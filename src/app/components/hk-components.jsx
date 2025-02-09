@@ -1,37 +1,43 @@
 "use client"
 
 import { useState } from "react"
-import styles from "./hk-emergencycontrol.module.css"
+import styles from "./hk-components.module.css"
 
 export default function EmergencyButtons() {
   const [isLockdown, setIsLockdown] = useState(false)
 
   const handleLockdown = () => {
     setIsLockdown(!isLockdown)
-    // Add your lockdown logic here
     alert(isLockdown ? "Lockdown deactivated" : "Emergency lockdown activated")
   }
 
   const handleContactAuthorities = () => {
-    // Add your contact authorities logic here
     alert("Contacting authorities...")
   }
 
   return (
-    <div className={`flex flex-col items-center gap-4 mt-6`}>
+    <div className={styles.buttonContainer}>
       <button
         onClick={handleLockdown}
-        className={`px-8 py-3 rounded-lg font-semibold text-white transition-all w-64
-          ${isLockdown ? "bg-red-600 hover:bg-red-700" : "bg-rose-400 hover:bg-rose-500"}`}
+        className={`${styles.button} ${isLockdown ? styles.emergencyButtonActive : styles.emergencyButton}`}
       >
         {isLockdown ? "Disable Lockdown" : "Emergency Lockdown"}
       </button>
-      <button
-        onClick={handleContactAuthorities}
-        className="px-8 py-3 rounded-lg font-semibold text-white bg-rose-400 hover:bg-rose-500 transition-all w-64"
-      >
+      <button onClick={handleContactAuthorities} className={`${styles.button} ${styles.contactButton}`}>
         Contact Authorities
       </button>
     </div>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
